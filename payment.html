@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konfirmasi Pembayaran - AN Digital Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header container">
+      <h1 class="brand">AN Digital Academy</h1>
+      <nav class="nav-actions">
+        <a href="index.html" class="btn btn-outline">Beranda</a>
+        <a href="login.html" class="btn btn-outline">Login</a>
+      </nav>
+    </header>
+
+    <section class="panel">
+      <h2>Konfirmasi Pembayaran</h2>
+      <p class="muted">Pilih metode pembayaran dan kirim detail transaksi Anda.</p>
+      <p class="business-contact">
+        Konfirmasi pembayaran ke WhatsApp bisnis:
+        <a href="https://wa.me/6288245213110" target="_blank" rel="noopener noreferrer">0882 4521 3110</a>
+      </p>
+
+      <div id="qrisBox" class="qris-box" hidden>
+        <h3>Kode QRIS</h3>
+        <p class="muted">Silakan scan QR di bawah ini untuk melakukan pembayaran.</p>
+        <img
+          id="qrisImage"
+          src="assets/img/Qris.jpeg"
+          alt="Kode QR pembayaran QRIS"
+          class="qris-image"
+        >
+        <p id="qrisImageError" class="status error" hidden>
+          Gambar QRIS gagal dimuat. Silakan refresh halaman atau hubungi admin.
+        </p>
+      </div>
+
+      <div class="method-list">
+        <div class="method-item"><strong>QRIS</strong><span>Scan kode QR merchant</span></div>
+        <div class="method-item"><strong>DANA</strong><span>0882 4521 3110 (Anugrah)</span></div>
+        <div class="method-item"><strong>OVO</strong><span>0882 4521 3110 (Anugrah)</span></div>
+        <div class="method-item"><strong>Transfer Bank BSI</strong><span>7111-2345-6789 a.n. Anugrah</span></div>
+      </div>
+
+      <form id="paymentForm" class="form-grid">
+        <label for="paymentMethod">Metode Pembayaran
+          <select id="paymentMethod" name="paymentMethod" required>
+            <option value="">Pilih metode</option>
+            <option value="QRIS">QRIS</option>
+            <option value="DANA">DANA</option>
+            <option value="OVO">OVO</option>
+            <option value="Transfer Bank BSI">Transfer Bank BSI</option>
+          </select>
+        </label>
+
+        <label for="payerEmail">Email Akun
+          <input id="payerEmail" name="payerEmail" type="email" placeholder="email yang didaftarkan" required>
+        </label>
+
+        <label for="amount">Jumlah Pembayaran (Rp)
+          <input id="amount" name="amount" type="number" min="1000" value="149000" required>
+        </label>
+
+        <label for="notes">Catatan Tambahan
+          <textarea id="notes" name="notes" placeholder="Contoh: pembayaran dari rekening Anugrah"></textarea>
+        </label>
+
+        <p id="paymentStatus" class="status"></p>
+
+        <div class="form-footer">
+          <a href="login.html" class="text-link">Kembali ke login</a>
+          <button type="submit" class="btn btn-primary">Kirim Konfirmasi</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

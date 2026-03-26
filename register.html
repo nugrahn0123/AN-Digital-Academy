@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registrasi - AN Digital Academy</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="page-shell">
+		<header class="site-header container">
+			<h1 class="brand">AN Digital Academy</h1>
+			<nav class="nav-actions">
+				<a href="index.html" class="btn btn-outline">Beranda</a>
+				<a href="login.html" class="btn btn-primary">Login</a>
+			</nav>
+		</header>
+
+		<section class="panel">
+			<h2>Form Registrasi</h2>
+			<p class="muted">Daftar akun user, lalu lakukan pembayaran dan tunggu verifikasi manual dari admin.</p>
+
+			<form id="registerForm" class="form-grid">
+				<label for="name">Nama Lengkap
+					<input id="name" name="name" type="text" placeholder="Contoh: Andi Saputra" required>
+				</label>
+
+				<label for="email">Email
+					<input id="email" name="email" type="email" placeholder="nama@email.com" required>
+				</label>
+
+				<label for="phone">No. WhatsApp
+					<input id="phone" name="phone" type="tel" placeholder="08xxxxxxxxxx" required>
+				</label>
+
+				<label for="password">Password
+					<input id="password" name="password" type="password" minlength="6" required>
+				</label>
+
+				<p id="registerStatus" class="status"></p>
+
+				<div class="form-footer">
+					<a href="login.html" class="text-link">Sudah punya akun? Login di sini</a>
+					<button type="submit" class="btn btn-primary">Daftar</button>
+				</div>
+			</form>
+		</section>
+	</div>
+
+	<script src="app.js"></script>
+</body>
+</html>

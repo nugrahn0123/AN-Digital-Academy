@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - AN Digital Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header container">
+      <h1 class="brand">AN Digital Academy</h1>
+      <nav class="nav-actions">
+        <a href="index.html" class="btn btn-outline">Beranda</a>
+        <button id="logoutBtn" class="btn btn-primary" type="button">Logout</button>
+      </nav>
+    </header>
+
+    <section class="panel">
+      <div class="admin-header">
+        <h2>Dashboard Admin</h2>
+      </div>
+      <p id="adminGreeting" class="muted">Memuat data admin...</p>
+      <p id="adminStatus" class="status"></p>
+    </section>
+
+    <section class="panel">
+      <h3 id="adminUserFormTitle">Tambah User Baru</h3>
+      <form id="adminUserForm" class="form-grid admin-form-grid">
+        <input id="adminUserOriginalEmail" name="originalEmail" type="hidden">
+
+        <label for="adminUserName">Nama
+          <input id="adminUserName" name="name" type="text" placeholder="Nama lengkap" required>
+        </label>
+
+        <label for="adminUserEmail">Email
+          <input id="adminUserEmail" name="email" type="email" placeholder="email@contoh.com" required>
+        </label>
+
+        <label for="adminUserPhone">No. WA
+          <input id="adminUserPhone" name="phone" type="text" placeholder="08xxxxxxxxxx" required>
+        </label>
+
+        <label for="adminUserPassword">Password
+          <input id="adminUserPassword" name="password" type="text" placeholder="Isi untuk user baru, kosongkan saat tidak ganti password">
+        </label>
+
+        <label for="adminUserVerified">Status Verifikasi
+          <select id="adminUserVerified" name="isVerified" required>
+            <option value="false">Menunggu verifikasi</option>
+            <option value="true">Terverifikasi</option>
+          </select>
+        </label>
+
+        <div class="form-footer">
+          <button id="adminUserCancelBtn" class="btn btn-outline" type="button">Batal Edit</button>
+          <button class="btn btn-primary" type="submit">Simpan User</button>
+        </div>
+      </form>
+      <p id="adminUserStatus" class="status"></p>
+    </section>
+
+    <section class="panel">
+      <h3>Data User Terdaftar</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Email</th>
+              <th>No. WA</th>
+              <th>Password</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="usersTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3 id="adminPaymentFormTitle">Tambah Konfirmasi Pembayaran</h3>
+      <form id="adminPaymentForm" class="form-grid admin-form-grid">
+        <input id="adminPaymentOriginalReference" name="originalReference" type="hidden">
+
+        <label for="adminPaymentUserName">Nama User
+          <input id="adminPaymentUserName" name="userName" type="text" placeholder="Nama user" required>
+        </label>
+
+        <label for="adminPaymentUserEmail">Email User
+          <input id="adminPaymentUserEmail" name="userEmail" type="email" placeholder="email user" required>
+        </label>
+
+        <label for="adminPaymentMethod">Metode
+          <select id="adminPaymentMethod" name="method" required>
+            <option value="">Pilih metode</option>
+            <option value="QRIS">QRIS</option>
+            <option value="DANA">DANA</option>
+            <option value="OVO">OVO</option>
+            <option value="Transfer Bank BSI">Transfer Bank BSI</option>
+          </select>
+        </label>
+
+        <label for="adminPaymentAmount">Jumlah (Rp)
+          <input id="adminPaymentAmount" name="amount" type="number" min="1000" required>
+        </label>
+
+        <label for="adminPaymentReference">Referensi
+          <input id="adminPaymentReference" name="reference" type="text" placeholder="Otomatis jika dikosongkan">
+        </label>
+
+        <label for="adminPaymentStatusField">Status
+          <input id="adminPaymentStatusField" name="status" type="text" value="Menunggu pengecekan admin" required>
+        </label>
+
+        <label for="adminPaymentNotes">Catatan
+          <textarea id="adminPaymentNotes" name="notes" placeholder="Catatan pembayaran"></textarea>
+        </label>
+
+        <div class="form-footer">
+          <button id="adminPaymentCancelBtn" class="btn btn-outline" type="button">Batal Edit</button>
+          <button class="btn btn-primary" type="submit">Simpan Pembayaran</button>
+        </div>
+      </form>
+      <p id="adminPaymentStatus" class="status"></p>
+    </section>
+
+    <section class="panel">
+      <h3>Data Konfirmasi Pembayaran</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>User</th>
+              <th>Email</th>
+              <th>Metode</th>
+              <th>Jumlah</th>
+              <th>Referensi</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="paymentsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

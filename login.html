@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - AN Digital Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header container">
+      <h1 class="brand">AN Digital Academy</h1>
+      <nav class="nav-actions">
+        <a href="index.html" class="btn btn-outline">Beranda</a>
+        <a href="register.html" class="btn btn-primary">Daftar</a>
+      </nav>
+    </header>
+
+    <section class="panel">
+      <h2>Login Akun</h2>
+      <p class="muted">Login dengan akun Anda. Akun user hanya bisa aktif setelah diverifikasi admin.</p>
+
+      <form id="loginForm" class="form-grid">
+        <label for="loginEmail">Email
+          <input id="loginEmail" name="email" type="email" required>
+        </label>
+
+        <label for="loginPassword">Password
+          <input id="loginPassword" name="password" type="password" required>
+        </label>
+
+        <p id="loginStatus" class="status"></p>
+
+        <div class="form-footer">
+          <a href="register.html" class="text-link">Belum punya akun? Daftar sekarang</a>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
