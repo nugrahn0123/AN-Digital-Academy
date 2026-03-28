@@ -114,7 +114,11 @@
         </label>
 
         <label for="adminPaymentStatusField">Status
-          <input id="adminPaymentStatusField" name="status" type="text" value="Menunggu pengecekan admin" required>
+          <select id="adminPaymentStatusField" name="status" required>
+            <option value="Menunggu pengecekan admin">Menunggu pengecekan admin</option>
+            <option value="Pembayaran dikonfirmasi admin">Pembayaran dikonfirmasi admin</option>
+            <option value="Pembayaran ditolak admin">Pembayaran ditolak admin</option>
+          </select>
         </label>
 
         <label for="adminPaymentNotes">Catatan

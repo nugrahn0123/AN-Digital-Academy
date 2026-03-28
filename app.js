@@ -2,6 +2,9 @@ const USERS_KEY = "an_digital_users";
 const PAYMENTS_KEY = "an_digital_payments";
 const CURRENT_USER_KEY = "an_digital_current_user";
 const BUSINESS_WA_NUMBER = "6288245213110";
+const PAYMENT_STATUS_WAITING = "Menunggu pengecekan admin";
+const PAYMENT_STATUS_CONFIRMED = "Pembayaran dikonfirmasi admin";
+const PAYMENT_STATUS_REJECTED = "Pembayaran ditolak admin";
 
 function getUsers() {
   return JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
@@ -13,6 +16,43 @@ function saveUsers(users) {
 
 function getPayments() {
   return JSON.parse(localStorage.getItem(PAYMENTS_KEY) || "[]");
+}
+
+function isPaymentStatusConfirmedByAdmin(status) {
+  const normalized = String(status || "").trim().toLowerCase();
+  if (!normalized) return false;
+
+  const confirmedStatuses = [
+    PAYMENT_STATUS_CONFIRMED,
+    "terverifikasi",
+    "lunas",
+    "sudah dikonfirmasi"
+  ].map((item) => item.toLowerCase());
+
+  return confirmedStatuses.includes(normalized);
+}
+
+function hasAdminConfirmedPayment(userEmail) {
+  const email = String(userEmail || "").trim().toLowerCase();
+  if (!email) return false;
+
+  return getPayments().some(
+    (payment) => String(payment.userEmail || "").trim().toLowerCase() === email
+      && isPaymentStatusConfirmedByAdmin(payment.status)
+  );
+}
+
+function toCanonicalPaymentStatus(status) {
+  const normalized = String(status || "").trim().toLowerCase();
+  if (!normalized) return PAYMENT_STATUS_WAITING;
+  if (isPaymentStatusConfirmedByAdmin(normalized)) return PAYMENT_STATUS_CONFIRMED;
+
+  const rejectedKeywords = ["tolak", "ditolak", "gagal", "batal", "invalid"];
+  if (rejectedKeywords.some((keyword) => normalized.includes(keyword))) {
+    return PAYMENT_STATUS_REJECTED;
+  }
+
+  return PAYMENT_STATUS_WAITING;
 }
 
 function savePayments(payments) {
@@ -223,7 +263,7 @@ function handlePaymentPage() {
       amount,
       reference: autoReference,
       notes,
-      status: "Menunggu pengecekan admin"
+      status: PAYMENT_STATUS_WAITING
     };
 
     if (!payment.method || !payment.userEmail || payment.amount <= 0) {
@@ -562,8 +602,8 @@ function handleAdminPage() {
     if (adminPaymentFormTitle instanceof HTMLElement) {
       adminPaymentFormTitle.textContent = "Tambah Konfirmasi Pembayaran";
     }
-    if (adminPaymentStatusField instanceof HTMLInputElement) {
-      adminPaymentStatusField.value = "Menunggu pengecekan admin";
+    if (adminPaymentStatusField instanceof HTMLSelectElement) {
+      adminPaymentStatusField.value = PAYMENT_STATUS_WAITING;
     }
   }
 
@@ -595,8 +635,8 @@ function handleAdminPage() {
     if (adminPaymentReference instanceof HTMLInputElement) {
       adminPaymentReference.value = payment.reference || "";
     }
-    if (adminPaymentStatusField instanceof HTMLInputElement) {
-      adminPaymentStatusField.value = payment.status || "Menunggu pengecekan admin";
+    if (adminPaymentStatusField instanceof HTMLSelectElement) {
+      adminPaymentStatusField.value = toCanonicalPaymentStatus(payment.status);
     }
     if (adminPaymentNotes instanceof HTMLTextAreaElement) {
       adminPaymentNotes.value = payment.notes || "";
@@ -691,7 +731,7 @@ function handleAdminPage() {
         amount,
         reference: referenceInput || `PAY-${Date.now()}`,
         notes: String(formData.get("notes") || "").trim(),
-        status: String(formData.get("status") || "Menunggu pengecekan admin").trim()
+        status: String(formData.get("status") || PAYMENT_STATUS_WAITING).trim()
       };
 
       if (!payload.userName || !payload.userEmail || !payload.method || payload.amount <= 0) {
@@ -852,6 +892,7 @@ function handleMemberPage() {
 
   const memberEmail = document.getElementById("memberEmail");
   const memberAccountStatus = document.getElementById("memberAccountStatus");
+  const memberPaymentBtn = document.getElementById("memberPaymentBtn");
   const logoutBtn = document.getElementById("memberLogoutBtn");
   const user = getCurrentUser();
 
@@ -884,6 +925,11 @@ function handleMemberPage() {
 
   if (memberAccountStatus instanceof HTMLElement) {
     memberAccountStatus.textContent = user.isVerified ? "Terverifikasi" : "Menunggu verifikasi";
+  }
+
+  if (memberPaymentBtn instanceof HTMLAnchorElement) {
+    const isPaymentConfirmed = hasAdminConfirmedPayment(user.email);
+    memberPaymentBtn.hidden = isPaymentConfirmed || Boolean(user.isVerified);
   }
 
   if (logoutBtn instanceof HTMLButtonElement) {
