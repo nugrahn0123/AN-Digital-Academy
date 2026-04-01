@@ -36,10 +36,12 @@ function hasAdminConfirmedPayment(userEmail) {
   const email = String(userEmail || "").trim().toLowerCase();
   if (!email) return false;
 
-  return getPayments().some(
+  const latestPayment = getPayments().find(
     (payment) => String(payment.userEmail || "").trim().toLowerCase() === email
-      && isPaymentStatusConfirmedByAdmin(payment.status)
   );
+
+  if (!latestPayment) return false;
+  return isPaymentStatusConfirmedByAdmin(latestPayment.status);
 }
 
 function toCanonicalPaymentStatus(status) {
@@ -909,6 +911,26 @@ function handleMemberPage() {
     return;
   }
 
+  const isPaymentConfirmed = hasAdminConfirmedPayment(user.email);
+
+  if (!isPaymentConfirmed) {
+    if (memberPaymentBtn instanceof HTMLAnchorElement) {
+      memberPaymentBtn.hidden = false;
+      memberPaymentBtn.style.display = "inline-flex";
+    }
+
+    setStatus(
+      "memberStatus",
+      "Akses modul dikunci sampai pembayaran Anda dikonfirmasi admin. Silakan lakukan konfirmasi pembayaran atau tunggu verifikasi admin.",
+      "error"
+    );
+
+    setTimeout(() => {
+      window.location.href = "payment.html";
+    }, 1300);
+    return;
+  }
+
   if (!user.isVerified) {
     setStatus("memberStatus", "Akun Anda belum diverifikasi admin.", "error");
     setTimeout(() => {
@@ -928,8 +950,9 @@ function handleMemberPage() {
   }
 
   if (memberPaymentBtn instanceof HTMLAnchorElement) {
-    const isPaymentConfirmed = hasAdminConfirmedPayment(user.email);
-    memberPaymentBtn.hidden = isPaymentConfirmed || Boolean(user.isVerified);
+    const shouldShowPaymentButton = !isPaymentConfirmed;
+    memberPaymentBtn.hidden = !shouldShowPaymentButton;
+    memberPaymentBtn.style.display = shouldShowPaymentButton ? "inline-flex" : "none";
   }
 
   if (logoutBtn instanceof HTMLButtonElement) {
