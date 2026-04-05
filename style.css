@@ -94,13 +94,54 @@ a {
   justify-content: flex-end;
 }
 
+.nav-actions .text-link,
+.hero-actions .text-link {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .hero-actions {
   justify-content: center;
   margin-top: 4px;
 }
 
+.hero .hero-actions {
+  width: min(560px, 100%);
+  margin: 10px auto 0;
+}
+
 .hero-actions .btn {
   min-width: 210px;
+}
+
+.hero .hero-actions .text-link {
+  padding: 10px 2px;
+  line-height: 1.2;
+}
+
+.home-header {
+  justify-content: center;
+  padding: 28px 0 8px;
+}
+
+.home-header .brand {
+  text-align: center;
+}
+
+.hero-main {
+  padding-top: 52px;
+}
+
+.hero-main h2 {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-main p {
+  max-width: 760px;
 }
 
 .btn {
@@ -480,6 +521,132 @@ a {
   color: var(--text-soft);
   font-size: 0.84rem;
   line-height: 1.55;
+}
+
+.income-proof {
+  border-color: rgba(255, 193, 94, 0.36);
+  background:
+    radial-gradient(720px 260px at 0% 0%, rgba(255, 122, 24, 0.2), transparent 58%),
+    radial-gradient(640px 260px at 100% 0%, rgba(15, 227, 186, 0.14), transparent 62%),
+    rgba(255, 255, 255, 0.04);
+}
+
+.income-proof-head {
+  text-align: center;
+}
+
+.income-kicker {
+  display: inline-flex;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 186, 101, 0.5);
+  background: rgba(255, 122, 24, 0.15);
+  color: #ffe6c7;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.income-proof-head h3 {
+  margin: 10px 0 8px;
+}
+
+.income-headline {
+  margin: 0 auto;
+  max-width: 760px;
+  color: #fff3df;
+  font-size: 1rem;
+  line-height: 1.65;
+  font-weight: 700;
+}
+
+.income-hooks {
+  margin: 10px auto 0;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 900px;
+}
+
+.income-hooks span {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.77rem;
+  color: #e7f2ff;
+  background: rgba(9, 23, 43, 0.52);
+}
+
+.income-proof-head p {
+  margin: 0 auto;
+  max-width: 780px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.income-block {
+  margin-top: 16px;
+}
+
+.income-block h4 {
+  margin: 0 0 10px;
+  font-size: 1.02rem;
+  color: #f7fbff;
+}
+
+.income-gallery {
+  display: grid;
+  gap: 12px;
+}
+
+.monthly-gallery {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.transaction-gallery {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.income-shot {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.income-shot:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.36);
+  box-shadow: 0 14px 28px rgba(4, 10, 22, 0.35);
+}
+
+.income-shot img {
+  width: 100%;
+  height: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  display: block;
+}
+
+.income-shot figcaption {
+  margin: 0;
+  padding: 9px 10px;
+  font-size: 0.79rem;
+  line-height: 1.5;
+  color: #d6e7fb;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(9, 23, 43, 0.5);
+}
+
+.income-note {
+  margin: 16px 0 0;
+  text-align: center;
+  color: #e1eeff;
+  line-height: 1.65;
 }
 
 .testimonials {
@@ -988,10 +1155,20 @@ th {
     grid-template-columns: 1fr;
   }
 
+  .monthly-gallery,
+  .transaction-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .site-header {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
+  }
+
+  .home-header {
+    align-items: center;
+    padding-top: 18px;
   }
 
   .nav-actions,
@@ -1002,6 +1179,12 @@ th {
   .nav-actions {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nav-actions .text-link,
+  .hero-actions .text-link {
+    width: 100%;
+    min-height: 42px;
   }
 
   .hero-actions {
@@ -1025,6 +1208,10 @@ th {
 
   .hero {
     padding: 48px 0 30px;
+  }
+
+  .hero-main {
+    padding-top: 38px;
   }
 
   .hero-proof {
@@ -1060,6 +1247,15 @@ th {
     width: min(1100px, 94%);
   }
 
+  .site-header {
+    padding: 16px 0 10px;
+    gap: 10px;
+  }
+
+  .home-header {
+    padding: 14px 0 6px;
+  }
+
   .bg-glow {
     opacity: 0.18;
     filter: blur(90px);
@@ -1069,10 +1265,28 @@ th {
     font-size: 1.2rem;
   }
 
+  .btn {
+    padding: 11px 16px;
+    font-size: 0.9rem;
+  }
+
+  .nav-actions {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
   .pill {
     font-size: 0.76rem;
     padding: 7px 12px;
     margin-bottom: 14px;
+  }
+
+  .hero {
+    padding: 34px 0 24px;
+  }
+
+  .hero-main {
+    padding-top: 26px;
   }
 
   .hero h2 {
@@ -1093,9 +1307,19 @@ th {
     font-size: 0.72rem;
   }
 
+  .hero-proof {
+    justify-content: center;
+    gap: 8px;
+  }
+
   .slot-alert,
   .business-contact {
     font-size: 0.8rem;
+  }
+
+  .price-box {
+    padding: 10px 12px;
+    gap: 10px;
   }
 
   .old {
@@ -1128,6 +1352,143 @@ th {
   .closing-grid,
   .compare-grid {
     gap: 10px;
+  }
+
+  .card,
+  .panel,
+  .cta {
+    border-radius: 14px;
+  }
+
+  .card,
+  .panel {
+    padding: 16px;
+  }
+
+  .stack-item,
+  .roadmap-step,
+  .closing-grid div,
+  .compare-side,
+  .class-card,
+  .stat-item {
+    padding: 11px;
+  }
+
+  .cta {
+    margin: 22px auto 38px;
+    padding: 20px 14px;
+  }
+
+  .urgency-bar {
+    gap: 8px;
+  }
+
+  .urgency-bar span {
+    width: 100%;
+    text-align: center;
+  }
+
+  .monthly-gallery {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .transaction-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .income-shot {
+    width: 100%;
+    margin: 0;
+  }
+
+  .income-shot img {
+    height: 158px;
+    max-height: 158px;
+    object-fit: contain;
+    object-position: center top;
+    padding: 4px;
+    background: rgba(9, 23, 43, 0.7);
+  }
+
+  .monthly-gallery .income-shot img {
+    height: 200px;
+    max-height: 200px;
+  }
+
+  .income-headline {
+    font-size: 0.9rem;
+  }
+
+  .income-hooks {
+    justify-content: flex-start;
+  }
+
+  .income-hooks span {
+    font-size: 0.71rem;
+    padding: 5px 9px;
+  }
+
+  .income-shot figcaption {
+    font-size: 0.76rem;
+    padding: 8px 9px;
+  }
+
+  .panel h2 {
+    font-size: 1.25rem;
+  }
+
+  .muted {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+    padding: 10px 11px;
+  }
+
+  .form-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-footer .btn {
+    width: 100%;
+  }
+
+  .method-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .qris-box {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .qris-image {
+    width: min(220px, 100%);
+  }
+
+  .learning-grid,
+  .class-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-wrap {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+
+  th,
+  td {
+    padding: 9px 7px;
+    font-size: 0.82rem;
   }
 
   .testimonial-card {
