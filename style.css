@@ -1477,7 +1477,27 @@ th {
 
   .learning-grid,
   .class-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .class-grid {
     grid-template-columns: 1fr;
+  }
+
+  .learning-grid {
+    gap: 8px;
+  }
+
+  .learning-item {
+    padding: 10px;
+  }
+
+  .learning-item strong {
+    font-size: 0.9rem;
+  }
+
+  .learning-item span {
+    font-size: 0.75rem;
   }
 
   .table-wrap {

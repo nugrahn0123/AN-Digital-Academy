@@ -39,6 +39,26 @@
       return;
     }
 
+    function normalizeYoutubeEmbedUrl(url) {
+      if (!url) return "";
+
+      if (url.indexOf("youtube.com/embed/") !== -1) {
+        return url;
+      }
+
+      var matchShort = url.match(/youtu\.be\/([^?&/]+)/i);
+      if (matchShort && matchShort[1]) {
+        return "https://www.youtube.com/embed/" + matchShort[1];
+      }
+
+      var matchWatch = url.match(/[?&]v=([^?&/]+)/i);
+      if (matchWatch && matchWatch[1]) {
+        return "https://www.youtube.com/embed/" + matchWatch[1];
+      }
+
+      return url;
+    }
+
     function setActiveChapter(buttonEl) {
       for (var i = 0; i < chapterButtons.length; i += 1) {
         chapterButtons[i].classList.remove("is-active");
@@ -48,7 +68,7 @@
       var chapter = buttonEl.getAttribute("data-chapter") || "Chapter";
       var title = buttonEl.getAttribute("data-title") || "Materi";
       var summary = buttonEl.getAttribute("data-summary") || "";
-      var embedUrl = buttonEl.getAttribute("data-embed-url") || "";
+      var embedUrl = normalizeYoutubeEmbedUrl(buttonEl.getAttribute("data-embed-url") || "");
       var youtubeUrl = buttonEl.getAttribute("data-youtube-url") || "";
 
       chapterLabelEl.textContent = chapter;
