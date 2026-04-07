@@ -29,49 +29,94 @@
 
     <section class="panel reveal reveal-delay-2">
       <h3>Daftar Chapter</h3>
-      <p class="panel-note">Setiap chapter dirancang praktis agar Anda bisa langsung produksi project nyata.</p>
+      <p class="panel-note">Klik chapter di kiri, lalu video utama akan tampil besar di kanan seperti kelas online.</p>
 
-      <div class="chapter-layout">
-        <div class="chapter-list">
-          <article class="chapter-item">
-            <span class="chapter-index">Video 1</span>
-            <h4>Setup Lingkungan Coding yang Efisien</h4>
-            <p>Menyiapkan editor, struktur project, dan kebiasaan coding yang rapi sejak awal.</p>
-          </article>
+      <div class="learning-layout">
+        <aside class="chapter-sidebar" aria-label="Navigasi chapter Modul 2">
+          <button
+            type="button"
+            class="chapter-nav-item is-active"
+            data-chapter="Chapter 1"
+            data-title="Setup VS Code"
+            data-summary="Pengenalan Visual Studio Code, fitur utama, dan panduan instalasi awal untuk mulai coding website + AI."
+            data-embed-url="https://www.youtube.com/embed/kQl8ugdcZCc"
+            data-youtube-url="https://youtu.be/kQl8ugdcZCc?si=LDLxfwq_78BC_d_E"
+          >
+            <span class="chapter-nav-kicker">Chapter 1</span>
+            <strong>Setup VS Code</strong>
+          </button>
 
-          <article class="chapter-item">
-            <span class="chapter-index">Video 2</span>
-            <h4>Prompting AI untuk Frontend</h4>
-            <p>Teknik membuat prompt yang jelas agar AI menghasilkan kode HTML/CSS/JS yang usable.</p>
-          </article>
+          <button
+            type="button"
+            class="chapter-nav-item"
+            data-chapter="Chapter 2"
+            data-title="Membuat Website Landing Page Sederhana dari Nol dengan ChatGPT"
+            data-summary="Tutorial langkah demi langkah membuat landing page sederhana menggunakan ChatGPT."
+            data-embed-url="https://www.youtube.com/embed/j35OCHn8lV0"
+            data-youtube-url="https://youtu.be/j35OCHn8lV0"
+          >
+            <span class="chapter-nav-kicker">Chapter 2</span>
+            <strong>Website Landing Page</strong>
+          </button>
 
-          <article class="chapter-item">
-            <span class="chapter-index">Video 3</span>
-            <h4>Menyusun Komponen UI yang Konsisten</h4>
-            <p>Membangun section, card, dan tombol reusable agar desain profesional dan hemat waktu.</p>
-          </article>
+          <button
+            type="button"
+            class="chapter-nav-item"
+            data-chapter="Chapter 3"
+            data-title="Membuat Website Company Profile dengan ChatGPT"
+            data-summary="Belajar membangun website company profile sederhana dengan bantuan ChatGPT."
+            data-embed-url="https://www.youtube.com/embed/tAROP5WZB-g"
+            data-youtube-url="https://youtu.be/tAROP5WZB-g"
+          >
+            <span class="chapter-nav-kicker">Chapter 3</span>
+            <strong>Website Company Profile</strong>
+          </button>
 
-          <article class="chapter-item">
-            <span class="chapter-index">Video 4</span>
-            <h4>Debugging Cepat dan Refactor Aman</h4>
-            <p>Cara membaca error, memperbaiki bug, dan merapikan kode tanpa mengubah perilaku utama.</p>
-          </article>
-
-          <article class="chapter-item">
-            <span class="chapter-index">Video 5</span>
-            <h4>Deploy Project Hingga Online</h4>
-            <p>Langkah mempublikasikan website agar bisa diakses client dan siap dipresentasikan.</p>
-          </article>
-        </div>
-
-        <aside class="detail-aside">
-          <h4>Target Hasil Modul</h4>
-          <ul>
-            <li>Mampu menyelesaikan website lebih cepat dengan workflow AI.</li>
-            <li>Paham cara menjaga kualitas kode saat iterasi cepat.</li>
-            <li>Siap menampilkan portfolio online ke calon client.</li>
-          </ul>
+          <button
+            type="button"
+            class="chapter-nav-item"
+            data-chapter="Chapter 4"
+            data-title="Tutorial GitHub Copilot"
+            data-summary="Dasar penggunaan GitHub Copilot untuk membantu menulis dan menyempurnakan kode lebih cepat."
+            data-embed-url=""
+            data-youtube-url=""
+          >
+            <span class="chapter-nav-kicker">Chapter 4</span>
+            <strong>Tutorial GitHub Copilot</strong>
+          </button>
         </aside>
+
+        <section class="video-stage" aria-live="polite">
+          <p id="activeChapterLabel" class="video-stage-kicker">Chapter 1</p>
+          <h4 id="activeVideoTitle">Setup VS Code</h4>
+          <p id="activeVideoSummary" class="video-stage-summary">
+            Pengenalan Visual Studio Code, fitur utama, dan panduan instalasi awal untuk mulai coding website + AI.
+          </p>
+
+          <div id="videoFrameWrap" class="main-video-frame">
+            <iframe
+              id="moduleMainVideo"
+              src="https://www.youtube.com/embed/kQl8ugdcZCc"
+              title="Video Chapter Modul 2"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <p id="videoUnavailableNote" class="video-placeholder-note hidden">Video untuk chapter ini belum tersedia.</p>
+
+          <div class="video-stage-actions">
+            <a
+              id="openYoutubeBtn"
+              class="btn btn-primary"
+              href="https://youtu.be/kQl8ugdcZCc?si=LDLxfwq_78BC_d_E"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Buka di YouTube</a>
+          </div>
+        </section>
       </div>
     </section>
 
